@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Blood Details</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <h1>Blood Detail Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Blood Type</th>
+                <th>Amount Available</th>
+                <th>Donation Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for blood_detail in blood_details %}
+            <tr>
+                <td>{{ blood_detail.blood_type }}</td>
+                <td>{{ blood_detail.amount_available }}</td>
+                <td>{{ blood_detail.donation_date }}</td>
+            </tr>
+            {% endfor %}
+           
+
+
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a href="{% url 'organization_create' %}" class="back-button">Back</a>
+        <a href="{% url 'login' %}"class="next-button">Next</a>
+    </div>
+</body>
+</html>
